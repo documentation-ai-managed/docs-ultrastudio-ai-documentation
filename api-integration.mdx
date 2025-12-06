@@ -1,0 +1,143 @@
+---
+title: API Integration
+description: Guide to integrating UltraStudio AI with external APIs and services
+---
+
+## API Overview
+
+UltraStudio AI provides a comprehensive REST API for programmatic access to your documentation platform.
+
+<Steps>
+  <Step title="Generate API Key" icon="key">
+    Create a secure API key from your workspace settings for authentication.
+  </Step>
+  <Step title="Choose Integration" icon="plug">
+    Select from our pre-built integrations or build custom connections.
+  </Step>
+  <Step title="Configure Webhooks" icon="webhook">
+    Set up webhooks to receive real-time notifications about documentation changes.
+  </Step>
+  <Step title="Test Connection" icon="check-circle">
+    Verify your integration works correctly with our testing tools.
+  </Step>
+</Steps>
+
+## Authentication
+
+<Tabs>
+  <Tab title="API Key" icon="key">
+    Use API keys for server-to-server authentication.
+    
+    ```javascript
+const headers = {
+  'Authorization': `Bearer ${process.env.ULTRASTUDIO_API_KEY}`,
+  'Content-Type': 'application/json'
+};
+    ```
+  </Tab>
+  <Tab title="OAuth" icon="shield">
+    Implement OAuth 2.0 for user-based authentication.
+    
+    ```javascript
+const oauthFlow = {
+  clientId: 'your-client-id',
+  redirectUri: 'https://your-app.com/callback',
+  scope: 'docs:read docs:write'
+};
+    ```
+  </Tab>
+</Tabs>
+
+<Callout kind="info">All API requests require HTTPS and proper authentication headers.</Callout>
+
+## Core Endpoints
+
+<Columns cols={2}>
+  <Card title="Projects API" icon="folder" href="#projects" cta="Explore">
+    Manage documentation projects and workspaces.
+  </Card>
+  <Card title="Content API" icon="file-text" href="#content" cta="View Docs">
+    Create, update, and retrieve documentation content.
+  </Card>
+</Columns>
+
+## Webhook Configuration
+
+<ExpandableGroup>
+  <Expandable title="Setup Webhooks" default-open="true">
+    Configure webhooks to receive events when documentation is updated.
+    
+    ```javascript
+const webhookConfig = {
+  url: 'https://your-app.com/webhook',
+  events: ['doc.updated', 'doc.created', 'project.published'],
+  secret: 'your-webhook-secret'
+};
+    ```
+  </Expandable>
+  <Expandable title="Event Types" default-open="false">
+    - `doc.created`: New documentation page
+    - `doc.updated`: Content modifications
+    - `doc.deleted`: Page removal
+    - `project.published`: Publication events
+  </Expandable>
+</ExpandableGroup>
+
+## Rate Limits
+
+| Plan | Requests/Minute | Requests/Hour |
+|------|-----------------|----------------|
+| Free | 100 | 1,000 |
+| Pro | 1,000 | 10,000 |
+| Enterprise | Unlimited | Unlimited |
+
+<Callout kind="alert">Monitor your API usage to avoid hitting rate limits.</Callout>
+
+## Error Handling
+
+```javascript
+try {
+  const response = await fetch('/api/v1/docs', {
+    headers: { 'Authorization': `Bearer ${apiKey}` }
+  });
+  
+  if (!response.ok) {
+    throw new Error(`API Error: ${response.status}`);
+  }
+  
+  const data = await response.json();
+  console.log('Documentation retrieved:', data);
+} catch (error) {
+  console.error('Failed to fetch docs:', error.message);
+}
+```
+
+## SDK and Libraries
+
+We provide official SDKs for popular programming languages:
+
+- **JavaScript/TypeScript**: Full-featured SDK with TypeScript support
+- **Python**: Async-compatible library for Python applications
+- **Go**: Lightweight client for Go services
+- **Java**: Enterprise-grade SDK with Spring Boot integration
+
+## Best Practices
+
+<Expandable title="API Usage Tips" default-open="true">
+  - Use exponential backoff for retry logic
+  - Implement proper error handling for all requests
+  - Cache responses to reduce API calls
+  - Monitor rate limits and usage patterns
+  - Keep API keys secure and rotate regularly
+</Expandable>
+
+## Migration Guide
+
+If you're migrating from another documentation platform:
+
+1. Export your existing data
+2. Map your current structure to UltraStudio AI's API
+3. Use our migration tools for bulk imports
+4. Test integrations thoroughly before going live
+
+Contact our support team for migration assistance.

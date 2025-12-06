@@ -1,0 +1,178 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: UltraStudio AI Documentation API
+  license:
+    name: MIT
+servers:
+  - url: https://api.ultrastudio.ai/v1
+paths:
+  /docs:
+    get:
+      summary: List all documentation projects
+      operationId: listDocs
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of documentation projects
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Docs'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new documentation project
+      operationId: createDocs
+      responses:
+        201:
+          description: Project created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /docs/{docId}:
+    get:
+      summary: Retrieve a specific documentation project
+      operationId: showDocById
+      parameters:
+        - name: docId
+          in: path
+          required: true
+          description: The id of the documentation project to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed information about the requested documentation project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Docs'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an existing documentation project
+      operationId: updateDoc
+      responses:
+        200:
+          description: Project updated successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users:
+    get:
+      summary: List all users in the system
+      operationId: listUsers
+      parameters:
+        - name: limit
+          in: query
+          description: How many users to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A paginated list of all users with their basic profile information
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new user account in the system
+      operationId: createUser
+      responses:
+        201:
+          description: User account created successfully with confirmation details
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Doc:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Docs:
+      type: array
+      items:
+        $ref: '#/components/schemas/Doc'
+    User:
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

@@ -1,0 +1,106 @@
+---
+title: Getting Started
+description: Quick start guide for setting up UltraStudio AI Documentation
+---
+
+## Setting Up Your Account
+
+Welcome to UltraStudio AI Documentation! This guide will walk you through the initial setup process to get your documentation space configured and ready for content.
+
+<Steps>
+  <Step title="Create Account" icon="user-plus">
+    Sign up for an UltraStudio AI account using your email or integrate with GitHub/GitLab for seamless authentication.
+    
+    <CodeGroup tabs="Email, GitHub">
+      ```javascript
+// For email signup, use our API
+const signup = await fetch('/api/auth/signup', {
+  method: 'POST',
+  body: JSON.stringify({
+    email: 'user@example.com',
+    password: 'securePassword123'
+  })
+});
+      ```
+      ```javascript
+// GitHub OAuth integration
+const githubAuth = await fetch('/api/auth/github', {
+  method: 'GET'
+});
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Choose Your Plan" icon="credit-card">
+    Select from our free starter plan or upgrade to pro/enterprise for advanced features like team collaboration and custom domains.
+  </Step>
+  <Step title="Configure Workspace" icon="settings">
+    Set up your workspace name, default theme, and basic navigation structure.
+  </Step>
+  <Step title="Import Content" icon="upload">
+    Upload your existing documentation files or connect your repository for automatic syncing.
+  </Step>
+</Steps>
+
+## Your First Documentation Project
+
+<Tabs>
+  <Tab title="From Scratch" icon="file-plus">
+    Start with a blank project and build your documentation structure from the ground up.
+    
+    <Expandable title="Recommended Structure" default-open="true">
+      - Introduction page
+      - API reference section
+      - Tutorials and guides
+      - Changelog
+    </Expandable>
+  </Tab>
+  <Tab title="Import Existing" icon="folder-open">
+    Bring in documentation from GitHub, GitLab, or local files.
+    
+    <Expandable title="Supported Formats" default-open="false">
+      - Markdown files (.md, .mdx)
+      - OpenAPI specifications (.yaml, .json)
+      - Static HTML sites
+    </Expandable>
+  </Tab>
+</Tabs>
+
+<Callout kind="info">All plans include unlimited projects and team members on the free tier.</Callout>
+
+## Basic Navigation Setup
+
+<Columns cols={2}>
+  <Card title="Tabs" icon="layout" href="#tabs" cta="Configure">
+    Create top-level sections like Documentation, API, and Changelog.
+  </Card>
+  <Card title="Groups" icon="folder" href="#groups" cta="Organize">
+    Group related pages together with collapsible sections.
+  </Card>
+</Columns>
+
+## Publishing Your First Page
+
+<ExpandableGroup>
+  <Expandable title="Create a Page" default-open="true">
+    Use our rich text editor to create your first documentation page with headings, code blocks, and interactive components.
+  </Expandable>
+  <Expandable title="Add Code Examples" default-open="false">
+    Include syntax-highlighted code blocks in multiple languages for better developer experience.
+  </Expandable>
+  <Expandable title="Publish" default-open="false">
+    Click publish to make your documentation live with automatic version control.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="success">Congratulations! You've successfully set up your first UltraStudio AI Documentation workspace.</Callout>
+
+## Next Steps
+
+Once your basic setup is complete, explore advanced features like:
+
+- Custom themes and branding
+- API documentation generation
+- Team collaboration workflows
+- Automated publishing pipelines
+
+Visit our configuration guide for detailed setup instructions.
