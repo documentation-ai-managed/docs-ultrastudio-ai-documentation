@@ -64,5 +64,20 @@
         ]
       }
     ]
+  },
+  "favicon": "https://blob-cdn.documentation.ai/org-e5c0c99c-636b-4492-958b-120fa2448c4c/doc-178b77cd-bdb1-4633-8a18-0b98b528b439/1765013627237-jhz7hak285-UltraStudio-Favicon.png?q=85&fm=auto&auto=compress%2Cformat",
+  "logo-dark": "https://blob-cdn.documentation.ai/org-e5c0c99c-636b-4492-958b-120fa2448c4c/doc-178b77cd-bdb1-4633-8a18-0b98b528b439/1765013714813-o7grcpoouo-App-UltraStudio-Logo-Dark-v2.png?q=85&fm=auto&auto=compress%2Cformat",
+  "logo-light": "https://blob-cdn.documentation.ai/org-e5c0c99c-636b-4492-958b-120fa2448c4c/doc-178b77cd-bdb1-4633-8a18-0b98b528b439/1765013727972-cajeakstojr-App-UltraStudio-Logo-Light-v2.png?q=85&fm=auto&auto=compress%2Cformat",
+  "colors": {
+    "light": {
+      "brand": "#37e942",
+      "heading": "#1a1a1a",
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#37e942",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
   }
 }
